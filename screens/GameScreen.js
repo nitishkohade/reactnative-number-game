@@ -6,6 +6,7 @@ import {Ionicons} from '@expo/vector-icons'
 import NumberContainer from '../components/NumberContainer';
 import defaultStyles from '../constants/default-styles';
 import MainButton from '../components/MainButton';
+import BodyText from '../components/BodyText'
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
@@ -17,6 +18,15 @@ const generateRandomBetween = (min, max, exclude) => {
     } else {
         return rndNum
     }
+}
+
+const renderListItem = (guess, numOfRound) => {
+    return (
+        <View style={styles.listItem} key={guess}>
+            <BodyText>#{numOfRound}</BodyText>
+            <BodyText>{guess}</BodyText>
+        </View>
+    )
 }
 
 const GameScreen = (props) => {
@@ -58,6 +68,8 @@ const GameScreen = (props) => {
         setPastGuesses(curPastGuesses => [nextNumber, ...curPastGuesses])
     }
 
+
+
   return (
     <View style={styles.screen}>
         <Text style={defaultStyles.title}>Opponent's Guess</Text>
@@ -71,11 +83,13 @@ const GameScreen = (props) => {
                 <Ionicons name="md-add" size={24} color="white"  />
                 </MainButton>
             </Card>
-            <ScrollView>
-                {
-                    pastGuesses.map(guess => <View key={guess}><Text>{guess}</Text></View>)
-                }
-            </ScrollView>
+            <View style={styles.listContainer}>
+                <ScrollView contentContainerStyle={styles.list}>
+                    {
+                        pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))
+                    }
+                </ScrollView>
+            </View>
     </View>
   );
 }
@@ -92,6 +106,25 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: 300,
         maxWidth: '90%'
+    },
+    listContainer: {
+        width: '80%',
+        flex: 1
+    },
+    list: {
+        alignItems: 'center',
+        flexGrow: 1,
+        justifyContent: 'flex-end'
+    },
+    listItem: {
+        borderColor: '#ccc',
+        padding: 15,
+        marginVertical: 10,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '60%'
     }
 });
 
