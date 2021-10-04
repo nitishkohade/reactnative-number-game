@@ -1,12 +1,17 @@
 {
   "expo": {
-    "name": "rn-second-app",
-    "slug": "rn-second-app",
+    "name": "numberGame",
+    "slug": "numberGame",
     "version": "1.0.0",
+    "privacy": "public",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "icon": "./assets/game.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/game.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +26,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/game.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/game.png"
     }
   }
 }
